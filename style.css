@@ -1,0 +1,19 @@
+body{
+background-color: rgb(43, 255, 0);
+color: #3900ff;
+}
+
+#pontos{
+    font-size: 30px;
+float: left;
+margin: 10%;
+}
+
+#tempo{
+    font-size: 30px;
+   float: right;
+   margin: 10%;
+}
+#desenho{
+    color: rgb(0, 38, 255);
+}
