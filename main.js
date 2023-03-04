@@ -24,6 +24,10 @@ function draw(){
     }
 }
 
+function setup(){
+    canvas.mouseReleased(classifyCanvas);
+}
+
 function checkSketch(){
     timerCounter = timerCounter + 1;
     velocidade = document.getElementById("velocidade").innerHTML = tempo.concat(timerCounter);
@@ -44,10 +48,31 @@ function classifyCanvas(){
     classifier.classify(canvas,gotResult);
 }
 
+function gotResult(error,results){
+    if(error){
+    console.error();
+    console.log(results);
+    drawSketch = results[0].label;
+    document.getElementById("esboco").innerHTML = "Seu Esboço".concat(drawSketch);
+    Math.round(results[0].confidence*100) + "%";
+}
+
 function updateCanvas(){
     canvas = createCanvas(280,280);
     canvas.center();
     background("white");
     canvas.mouseReleased(classifyCanvas);
     synth = window.speechSynthesis;
+}
+
+function preload(){
+    classifier = ml5.imageClassifier('DoodleNet');
+}
+function draw(){
+        strokeWeight(8);
+        color("cyan");
+        if(mouseIsPressed){
+            line(pmouseX,pmouseY,mouseX,mouseY);
+        }
+    }
 }
